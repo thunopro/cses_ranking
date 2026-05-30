@@ -5,8 +5,12 @@ import os
 
 url = "https://cses.fi/problemset/stats/friends/"
 
-# Use environment variable for session ID, fallback to hardcoded for local testing.
-session_id = os.environ.get("CSES_PHPSESSID", "bd118d15d63b39770097e0bb8252ce71a994e489")
+# Lấy session ID từ biến môi trường (phải cấu hình trong GitHub Secrets)
+session_id = os.environ.get("CSES_PHPSESSID")
+
+if not session_id:
+    print("Error: CSES_PHPSESSID environment variable is not set.")
+    exit(1)
 cookies = {
     "PHPSESSID": session_id
 }
